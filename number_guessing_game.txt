@@ -24,7 +24,7 @@ func main() {
 	} else {
 		fmt.Println("You Win")
 	}
-	fmt.Printf("%v", win_no)
+	fmt.Printf("Winning number is %v", win_no)
 }
 
 }
