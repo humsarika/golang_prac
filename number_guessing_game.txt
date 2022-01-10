@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+func main() {
+	package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+	var n int
+	rand.Seed(time.Now().UnixNano())
+	win_no := rand.Intn(10)
+	fmt.Print("Enter a number : ")
+	fmt.Scan(&n)
+	if n > win_no {
+		fmt.Println("Too High")
+	} else if n < win_no {
+		fmt.Println("Too Low")
+	} else {
+		fmt.Println("You Win")
+	}
+	fmt.Printf("%v", win_no)
+}
+
+}
