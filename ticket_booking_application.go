@@ -3,41 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
-
-func bookTicket(remaining uint) uint {
-	var bookings = []string{} // creating slice for storing name of users who has booked tickets from our application
-	var fname string          // first name of user
-	var lname string          // last name of user
-	var email string          // email of user
-	var userTickets uint      // number of tickets user want to book
-
-	// Asking user for their details
-	fmt.Print("\n\nEnter Your First Name : ")
-	fmt.Scan(&fname)
-	fmt.Print("Enter Your Last Name : ")
-	fmt.Scan(&lname)
-	fmt.Print("Enter Your Email : ")
-	fmt.Scan(&email)
-	fmt.Print("Enter number of tickets you want to book : ")
-	fmt.Scan(&userTickets)
-	remaining -= userTickets
-	bookings = append(bookings, fname+" "+lname)
-
-	fmt.Printf("\n\nThank you %v %v for booking tickets from our Application.\n", fname, lname)
-	fmt.Printf("You will receive a confirmation mail at %v ", email)
-	fmt.Print("\n\nThere are all our bookings : ")
-	var i int
-	for i = 0; i > len(bookings); i++ {
-		fmt.Printf("%v\n", bookings[i])
-	}
-
-	return remaining
-}
-func seatAvailbility(total uint, remaining uint) {
-	fmt.Printf("\nTotal Tickets : %v\n", total)
-	fmt.Printf("Remaining Tickets : %v\n", remaining)
-}
 
 func main() {
 	var appName = "TBA"
@@ -64,3 +31,47 @@ func main() {
 		}
 	}
 }
+
+func bookTicket(remaining uint) uint {
+	var bookings = []map[string]string{} // creating map for storing details of users who has booked tickets from our application
+	var fname string                     // first name of user
+	var lname string                     // last name of user
+	var email string                     // email of user
+	var userTickets uint                 // number of tickets user want to book
+
+	// Asking user for their details
+	fmt.Print("\n\nEnter Your First Name : ")
+	fmt.Scan(&fname)
+	fmt.Print("Enter Your Last Name : ")
+	fmt.Scan(&lname)
+	fmt.Print("Enter Your Email : ")
+	fmt.Scan(&email)
+	fmt.Print("Enter number of tickets you want to book : ")
+	fmt.Scan(&userTickets)
+	remaining -= userTickets
+
+	var userData = make(map[string]string)
+	userData["Firstname"] = fname
+	userData["lastname"] = lname
+	userData["email"] = email
+	userData["numberOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+	bookings = append(bookings, userData)
+	fmt.Printf("List of bookings - \n%v", bookings)
+
+	fmt.Printf("\n\nThank you %v %v for booking tickets from our Application.\n", fname, lname)
+	fmt.Printf("You will receive a confirmation mail at %v ", email)
+	fmt.Print("\n\nThere are all our bookings : ")
+	var i int
+	for i = 0; i > len(bookings); i++ {
+		fmt.Printf("%v\n", bookings[i])
+	}
+	return remaining
+}
+func seatAvailbility(total uint, remaining uint) {
+	fmt.Printf("\nTotal Tickets : %v\n", total)
+	fmt.Printf("Remaining Tickets : %v\n", remaining)
+}
+
+// func userDetail() {
+
+// }
